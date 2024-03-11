@@ -1,7 +1,7 @@
 import { describe, expect, test } from "@jest/globals";
 import Ship from "../modules/Ship";
 
-const ship = new Ship("ship");
+const ship = new Ship("ship", 3);
 
 describe("ship class", () => {
   test("ship hit", () => {
@@ -10,14 +10,14 @@ describe("ship class", () => {
   });
 
   test("ship not sunk", () => {
-    ship.setLength(3);
     ship.hit();
     expect(ship.getIsSunk()).toBe(false);
   });
 
   test("ship sunk", () => {
-    ship.setLength(1);
-    ship.hit();
+    for (let i = 0; i < ship.length; i++) {
+      ship.hit();
+    }
     expect(ship.getIsSunk()).toBe(true);
   });
 });
