@@ -1,6 +1,6 @@
 class Ship {
-  constructor(ship, length = 1) {
-    this.ship = ship;
+  constructor(name, length = 1) {
+    this.name = name;
     this.length = length;
     this.damage = 0;
     this.isSunk = false;
@@ -20,7 +20,7 @@ class Ship {
 
   // Getter
   getShip() {
-    return this.ship;
+    return this.name;
   }
 
   getLength() {
@@ -36,16 +36,12 @@ class Ship {
   }
 
   // Setter
-  setShip(ship) {
-    this.ship = ship;
+  setShip(name) {
+    this.name = name;
   }
 
   setLength(length) {
     this.length = length;
-  }
-
-  setDamage(damage) {
-    this.damage = damage;
   }
 }
 

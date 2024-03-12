@@ -3,7 +3,7 @@ import Ship from "../modules/Ship";
 
 const ship = new Ship("ship", 3);
 
-describe("ship class", () => {
+describe("Ship class", () => {
   test("ship hit", () => {
     ship.hit();
     expect(ship.getDamage()).toBe(1);
