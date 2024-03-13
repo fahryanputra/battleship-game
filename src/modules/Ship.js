@@ -19,7 +19,7 @@ class Ship {
   }
 
   // Getter
-  getShip() {
+  getName() {
     return this.name;
   }
 
@@ -36,7 +36,7 @@ class Ship {
   }
 
   // Setter
-  setShip(name) {
+  setName(name) {
     this.name = name;
   }
 
