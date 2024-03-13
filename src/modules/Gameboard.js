@@ -6,6 +6,10 @@ class Gameboard {
   // 1 = miss
   // 2 = hit
 
+  // Gameboard axis
+  // 0 = horizontal
+  // 1 = vertical
+
   constructor(x, y) {
     this.x = x;
     this.y = y;
@@ -49,16 +53,20 @@ class Gameboard {
     return this.board;
   }
 
+  destroyIfSunk(cell) {
+    if (cell.getIsSunk() === true) {
+      this.availableShips = this.availableShips.filter(
+        (ship) => ship.getName() !== cell.getName(),
+      );
+    }
+  }
+
   receiveAttack(x, y) {
     if (this.board[x][y] === 0) {
       this.board[x][y] = 1;
     } else {
       this.board[x][y].hit();
-      if (this.board[x][y].getIsSunk() === true) {
-        this.availableShips = this.availableShips.filter(
-          (ship) => ship.getName() !== this.board[x][y].getName(),
-        );
-      }
+      this.destroyIfSunk(this.board[x][y]);
       this.board[x][y] = 2;
     }
     return this.board;
