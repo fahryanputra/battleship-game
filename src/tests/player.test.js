@@ -1,7 +1,7 @@
 import { describe, expect, test } from "@jest/globals";
 import Player from "../modules/Player";
 
-const player = new Player("player", true);
+const player = new Player("player");
 const computer = new Player("computer");
 
 describe("Player class", () => {
@@ -24,7 +24,6 @@ describe("Player class", () => {
       [0, 0, 0],
       [0, 0, 0],
     ]);
-    expect(player.getIsTurn()).toBe(false);
   });
 
   test("add ship to player", () => {

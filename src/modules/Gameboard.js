@@ -53,22 +53,31 @@ class Gameboard {
     return this.board;
   }
 
-  destroyIfSunk(cell) {
-    if (cell.getIsSunk() === true) {
+  destroyIfSunk(tile) {
+    if (tile.getIsSunk() === true) {
       this.availableShips = this.availableShips.filter(
-        (ship) => ship.getName() !== cell.getName(),
+        (ship) => ship.getName() !== tile.getName(),
       );
     }
   }
 
   receiveAttack(x, y) {
-    if (this.board[x][y] === 0) {
-      this.board[x][y] = 1;
-    } else {
-      this.board[x][y].hit();
-      this.destroyIfSunk(this.board[x][y]);
-      this.board[x][y] = 2;
+    switch (this.board[x][y]) {
+      case 0:
+        this.board[x][y] = 1;
+        break;
+
+      case 1:
+      case 2:
+        break;
+
+      default:
+        this.board[x][y].hit();
+        this.destroyIfSunk(this.board[x][y]);
+        this.board[x][y] = 2;
+        break;
     }
+
     return this.board;
   }
 

@@ -1,15 +1,14 @@
 import Gameboard from "./Gameboard";
 
 class Player {
-  constructor(name, isTurn = false) {
+  constructor(name) {
     this.name = name;
-    this.isTurn = isTurn;
     this.gameboard = new Gameboard(3, 3);
+    this.winner = false;
   }
 
   attack(player, x, y) {
     player.getGameboard().receiveAttack(x, y);
-    this.isTurn = false;
   }
 
   // Getter
@@ -19,10 +18,6 @@ class Player {
 
   getGameboard() {
     return this.gameboard;
-  }
-
-  getIsTurn() {
-    return this.isTurn;
   }
 }
 
