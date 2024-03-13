@@ -44,4 +44,17 @@ describe("Gameboard class", () => {
       [0, 0, 0],
     ]);
   });
+
+  test("all ship is sunk", () => {
+    gameboard.receiveAttack(0, 1);
+    ship.hit();
+    expect(gameboard.getBoard()).toStrictEqual([
+      [2, 2, 0],
+      [0, 1, 0],
+      [0, 0, 0],
+    ]);
+    expect(gameboard.getShips()[0].getDamage()).toBe(2);
+    expect(gameboard.getShips()[0].getIsSunk()).toBe(true);
+    expect(gameboard.getAvailableShips().length).toBe(0);
+  });
 });
