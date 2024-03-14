@@ -1,26 +1,6 @@
-import Player from "./Player";
-
-function pickRandomNumber(size) {
-  return Math.floor(Math.random() * size);
-}
-
-function createPlayer(array, name, isPlayer = false) {
-  const player = new Player(name, isPlayer);
-  array.push(player);
-}
-
-function addShip(player, name, length = 1) {
-  player.getGameboard().addShip(name, length);
-}
-
-function placeShip(player, name, x, y, axis = 0) {
-  player.getGameboard().placeShip(name, x, y, axis);
-}
-
-function checkGameOver(player) {
-  gameOver = player.getLose();
-    if (gameOver) break;
-}
+import generateRandomNumber from "../utilities/generateRandomNumber";
+import generateFleet from "./generateFleet";
+import playerList from "./playerList";
 
 function attackValidation(player, x, y) {
   if (
@@ -90,8 +70,8 @@ function computerTurn(computer, player) {
   alert(`${name}'s turn!`);
 
   while (!isValid) {
-    x = pickRandomNumber(3);
-    y = pickRandomNumber(3);
+    x = generateRandomNumber(3);
+    y = generateRandomNumber(3);
 
     isValid = attackValidation(player, x, y);
   }
@@ -99,20 +79,11 @@ function computerTurn(computer, player) {
   executeAttack(computer, player, x, y);
 }
 
-function gameController() {
-  const players = [];
-  createPlayer(players, "player", true);
-  createPlayer(players, "computer");
-
-  addShip(players[0], "destroyer", 2);
-  placeShip(players[0], "destroyer", 0, 0, 0);
-  addShip(players[1], "destroyer", 2);
-  placeShip(players[1], "destroyer", 0, 0, 0);
-
-  let round = 0;
+function playRound(players, round) {
+  let counter = 0;
   let gameOver = false;
 
-  while (round < 3 && !gameOver) {
+  while (counter < round && !gameOver) {
     playerTurn(players[0], players[1]);
     gameOver = players[1].getLose();
     if (gameOver) break;
@@ -121,11 +92,17 @@ function gameController() {
     gameOver = players[0].getLose();
     if (gameOver) break;
 
-    round += 1;
+    counter += 1;
   }
+}
 
-  console.log(players[0].getGameboard().getBoard());
-  console.log(players[1].getGameboard().getBoard());
+function gameController() {
+  const players = playerList();
+
+  generateFleet(players[0]);
+  generateFleet(players[1]);
+
+  playRound(players, 3);
 }
 
 export default gameController;
