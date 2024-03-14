@@ -18,7 +18,12 @@ function placeShip(player, name, x, y, axis = 0) {
 }
 
 function attackValidation(player, x, y) {
-  if (x >= player.getGameboard().getX() || y >= player.getGameboard().getY())
+  if (
+    x >= player.getGameboard().getX() ||
+    y >= player.getGameboard().getY() ||
+    !x ||
+    !y
+  )
     return false;
 
   switch (player.getGameboard().getBoard()[x][y]) {
@@ -47,7 +52,7 @@ function playerTurn(player, computer) {
   }
 
   player.attack(computer, x, y);
-  alert(computer.getGameboard().getMessage());
+  alert(`${player.getName()}'s attack ${computer.getGameboard().getMessage()}`);
 }
 
 function computerTurn(computer, player) {
@@ -66,7 +71,7 @@ function computerTurn(computer, player) {
   computer.attack(player, x, y);
 
   alert(`${computer.getName()} attack ${x},${y}`);
-  alert(player.getGameboard().getMessage());
+  alert(`${computer.getName()}'s attack ${player.getGameboard().getMessage()}`);
 }
 
 function gameController() {
@@ -74,6 +79,8 @@ function gameController() {
   createPlayer(players, "player", true);
   createPlayer(players, "computer");
 
+  addShip(players[0], "destroyer", 2);
+  placeShip(players[0], "destroyer", 0, 0, 0);
   addShip(players[1], "destroyer", 2);
   placeShip(players[1], "destroyer", 0, 0, 0);
 
@@ -86,7 +93,8 @@ function gameController() {
     round += 1;
   }
 
-  console.log(players[1]);
+  console.log(players[0].getGameboard().getBoard());
+  console.log(players[1].getGameboard().getBoard());
 }
 
 export default gameController;
