@@ -41,13 +41,13 @@ class Gameboard {
   placeShip(name, x, y, axis) {
     const ship = this.ships.find((element) => element.getName() === name);
 
-    if (axis === 0) {
-      for (let i = y; i < ship.length; i++) {
-        this.board[x][i] = ship;
+    if (axis < 1) {
+      for (let i = 0; i < ship.length; i++) {
+        this.board[x][y + i] = ship;
       }
     } else {
-      for (let i = x; i < ship.length; i++) {
-        this.board[i][y] = ship;
+      for (let i = 0; i < ship.length; i++) {
+        this.board[x + i][y] = ship;
       }
     }
   }
