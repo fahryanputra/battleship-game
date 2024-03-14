@@ -15,6 +15,7 @@ class Gameboard {
     this.y = y;
     this.attackMessage = "";
     this.sunkMessage = "";
+    this.isAllShipSunk = false;
     this.ships = [];
     this.availableShips = [];
     this.board = [];
@@ -56,6 +57,11 @@ class Gameboard {
       this.availableShips = this.availableShips.filter(
         (ship) => ship.getName() !== tile.getName(),
       );
+
+      if (this.availableShips.length === 0) {
+        this.isAllShipSunk = true;
+      }
+
       this.sunkMessage = `${tile.getName()} sunk`;
     }
   }
@@ -110,6 +116,10 @@ class Gameboard {
 
   getSunkMessage() {
     return this.sunkMessage;
+  }
+
+  getIsAllShipSunk() {
+    return this.isAllShipSunk;
   }
 }
 

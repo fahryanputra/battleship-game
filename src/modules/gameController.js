@@ -17,6 +17,11 @@ function placeShip(player, name, x, y, axis = 0) {
   player.getGameboard().placeShip(name, x, y, axis);
 }
 
+function checkGameOver(player) {
+  gameOver = player.getLose();
+    if (gameOver) break;
+}
+
 function attackValidation(player, x, y) {
   if (
     x >= player.getGameboard().getX() ||
@@ -45,8 +50,13 @@ function executeAttack(player, target, x, y) {
 
   alert(`${playerName} attack ${x},${y}`);
   alert(`${playerName}'s attack ${targetBoard.getAttackMessage()}`);
+
   if (targetBoard.getSunkMessage())
     alert(`${targetName}'s ${targetBoard.getSunkMessage()}`);
+
+  if (target.getLose() === true) {
+    alert(`all of ${targetName}'s ship has been sunk`);
+  }
 }
 
 function playerTurn(player, computer) {
@@ -100,10 +110,16 @@ function gameController() {
   placeShip(players[1], "destroyer", 0, 0, 0);
 
   let round = 0;
+  let gameOver = false;
 
-  while (round < 3) {
+  while (round < 3 && !gameOver) {
     playerTurn(players[0], players[1]);
+    gameOver = players[1].getLose();
+    if (gameOver) break;
+
     computerTurn(players[1], players[0]);
+    gameOver = players[0].getLose();
+    if (gameOver) break;
 
     round += 1;
   }

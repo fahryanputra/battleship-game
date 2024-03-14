@@ -4,7 +4,6 @@ class Player {
   constructor(name) {
     this.name = name;
     this.gameboard = new Gameboard(3, 3);
-    this.lose = false;
   }
 
   attack(player, x, y) {
@@ -18,6 +17,10 @@ class Player {
 
   getGameboard() {
     return this.gameboard;
+  }
+
+  getLose() {
+    return this.gameboard.getIsAllShipSunk();
   }
 }
 

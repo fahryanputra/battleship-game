@@ -77,11 +77,20 @@ describe("Gameboard class", () => {
 
   test("attack hit message", () => {
     gameboard.receiveAttack(0, 2);
+    cruiser.hit();
     expect(gameboard.getAttackMessage()).toBe("hit");
   });
 
   test("attack invalid message", () => {
     gameboard.receiveAttack(0, 2);
     expect(gameboard.getAttackMessage()).toBe("invalid");
+  });
+
+  test("all ship sunk", () => {
+    gameboard.receiveAttack(1, 2);
+    gameboard.receiveAttack(2, 2);
+    cruiser.hit();
+    cruiser.hit();
+    expect(gameboard.getIsAllShipSunk()).toBe(true);
   });
 });
