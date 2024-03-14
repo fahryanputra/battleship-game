@@ -36,11 +36,27 @@ function attackValidation(player, x, y) {
   }
 }
 
+function executeAttack(player, target, x, y) {
+  const playerName = player.getName();
+  const targetName = target.getName();
+  const targetBoard = target.getGameboard();
+
+  player.attack(target, x, y);
+
+  alert(`${playerName} attack ${x},${y}`);
+  alert(`${playerName}'s attack ${targetBoard.getAttackMessage()}`);
+  if (targetBoard.getSunkMessage())
+    alert(`${targetName}'s ${targetBoard.getSunkMessage()}`);
+}
+
 function playerTurn(player, computer) {
-  alert(`${player.getName()}'s turn!`);
+  const name = player.getName();
+
   let x = 0;
   let y = 0;
   let isValid = false;
+
+  alert(`${name}'s turn!`);
 
   while (!isValid) {
     x = prompt("enter x coordinate:");
@@ -51,15 +67,17 @@ function playerTurn(player, computer) {
     if (!isValid) alert("invalid location, try again!");
   }
 
-  player.attack(computer, x, y);
-  alert(`${player.getName()}'s attack ${computer.getGameboard().getMessage()}`);
+  executeAttack(player, computer, x, y);
 }
 
 function computerTurn(computer, player) {
-  alert(`${computer.getName()}'s turn!`);
+  const name = computer.getName();
+
   let x = 0;
   let y = 0;
   let isValid = false;
+
+  alert(`${name}'s turn!`);
 
   while (!isValid) {
     x = pickRandomNumber(3);
@@ -68,10 +86,7 @@ function computerTurn(computer, player) {
     isValid = attackValidation(player, x, y);
   }
 
-  computer.attack(player, x, y);
-
-  alert(`${computer.getName()} attack ${x},${y}`);
-  alert(`${computer.getName()}'s attack ${player.getGameboard().getMessage()}`);
+  executeAttack(computer, player, x, y);
 }
 
 function gameController() {

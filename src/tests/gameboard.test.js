@@ -66,21 +66,22 @@ describe("Gameboard class", () => {
     ]);
     expect(gameboard.getShips()[0].getDamage()).toBe(2);
     expect(gameboard.getShips()[0].getIsSunk()).toBe(true);
+    expect(gameboard.getSunkMessage()).toBe("destroyer sunk");
     expect(gameboard.getAvailableShips().length).toBe(1);
   });
 
   test("attack miss message", () => {
     gameboard.receiveAttack(2, 0);
-    expect(gameboard.getMessage()).toBe("miss");
+    expect(gameboard.getAttackMessage()).toBe("miss");
   });
 
   test("attack hit message", () => {
     gameboard.receiveAttack(0, 2);
-    expect(gameboard.getMessage()).toBe("hit");
+    expect(gameboard.getAttackMessage()).toBe("hit");
   });
 
   test("attack invalid message", () => {
     gameboard.receiveAttack(0, 2);
-    expect(gameboard.getMessage()).toBe("invalid");
+    expect(gameboard.getAttackMessage()).toBe("invalid");
   });
 });

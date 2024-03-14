@@ -13,7 +13,8 @@ class Gameboard {
   constructor(x, y) {
     this.x = x;
     this.y = y;
-    this.message = "";
+    this.attackMessage = "";
+    this.sunkMessage = "";
     this.ships = [];
     this.availableShips = [];
     this.board = [];
@@ -55,26 +56,29 @@ class Gameboard {
       this.availableShips = this.availableShips.filter(
         (ship) => ship.getName() !== tile.getName(),
       );
+      this.sunkMessage = `${tile.getName()} sunk`;
     }
   }
 
   receiveAttack(x, y) {
+    this.sunkMessage = "";
+
     switch (this.board[x][y]) {
       case 0:
         this.board[x][y] = 1;
-        this.message = "miss";
+        this.attackMessage = "miss";
         break;
 
       case 1:
       case 2:
-        this.message = "invalid";
+        this.attackMessage = "invalid";
         break;
 
       default:
         this.board[x][y].hit();
         this.destroyIfSunk(this.board[x][y]);
         this.board[x][y] = 2;
-        this.message = "hit";
+        this.attackMessage = "hit";
         break;
     }
   }
@@ -100,8 +104,12 @@ class Gameboard {
     return this.availableShips;
   }
 
-  getMessage() {
-    return this.message;
+  getAttackMessage() {
+    return this.attackMessage;
+  }
+
+  getSunkMessage() {
+    return this.sunkMessage;
   }
 }
 
