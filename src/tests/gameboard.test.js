@@ -68,4 +68,19 @@ describe("Gameboard class", () => {
     expect(gameboard.getShips()[0].getIsSunk()).toBe(true);
     expect(gameboard.getAvailableShips().length).toBe(1);
   });
+
+  test("attack miss message", () => {
+    gameboard.receiveAttack(2, 0);
+    expect(gameboard.getMessage()).toBe("miss");
+  });
+
+  test("attack hit message", () => {
+    gameboard.receiveAttack(0, 2);
+    expect(gameboard.getMessage()).toBe("hit");
+  });
+
+  test("attack invalid message", () => {
+    gameboard.receiveAttack(0, 2);
+    expect(gameboard.getMessage()).toBe("invalid");
+  });
 });

@@ -13,6 +13,7 @@ class Gameboard {
   constructor(x, y) {
     this.x = x;
     this.y = y;
+    this.message = "";
     this.ships = [];
     this.availableShips = [];
     this.board = [];
@@ -27,8 +28,6 @@ class Gameboard {
         this.board[i].push(0);
       }
     }
-
-    return this.board;
   }
 
   addShip(name, length) {
@@ -49,8 +48,6 @@ class Gameboard {
         this.board[i][y] = ship;
       }
     }
-
-    return this.board;
   }
 
   destroyIfSunk(tile) {
@@ -65,23 +62,32 @@ class Gameboard {
     switch (this.board[x][y]) {
       case 0:
         this.board[x][y] = 1;
+        this.message = "miss";
         break;
 
       case 1:
       case 2:
+        this.message = "invalid";
         break;
 
       default:
         this.board[x][y].hit();
         this.destroyIfSunk(this.board[x][y]);
         this.board[x][y] = 2;
+        this.message = "hit";
         break;
     }
-
-    return this.board;
   }
 
   // Getter
+  getX() {
+    return this.x;
+  }
+
+  getY() {
+    return this.y;
+  }
+
   getBoard() {
     return this.board;
   }
@@ -92,6 +98,10 @@ class Gameboard {
 
   getAvailableShips() {
     return this.availableShips;
+  }
+
+  getMessage() {
+    return this.message;
   }
 }
 

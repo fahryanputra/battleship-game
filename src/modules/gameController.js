@@ -18,6 +18,9 @@ function placeShip(player, name, x, y, axis = 0) {
 }
 
 function attackValidation(player, x, y) {
+  if (x >= player.getGameboard().getX() || y >= player.getGameboard().getY())
+    return false;
+
   switch (player.getGameboard().getBoard()[x][y]) {
     case 1:
     case 2:
@@ -44,14 +47,15 @@ function playerTurn(player, computer) {
   }
 
   player.attack(computer, x, y);
+  alert(computer.getGameboard().getMessage());
 }
 
 function computerTurn(computer, player) {
   alert(`${computer.getName()}'s turn!`);
   let x = 0;
   let y = 0;
-
   let isValid = false;
+
   while (!isValid) {
     x = pickRandomNumber(3);
     y = pickRandomNumber(3);
@@ -62,6 +66,7 @@ function computerTurn(computer, player) {
   computer.attack(player, x, y);
 
   alert(`${computer.getName()} attack ${x},${y}`);
+  alert(player.getGameboard().getMessage());
 }
 
 function gameController() {
@@ -80,6 +85,8 @@ function gameController() {
 
     round += 1;
   }
+
+  console.log(players[1]);
 }
 
 export default gameController;
