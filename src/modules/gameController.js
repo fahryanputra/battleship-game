@@ -97,12 +97,17 @@ function playRound(players, round) {
 }
 
 function gameController() {
-  const players = playerList();
+  const boardSize = 5;
+  const players = playerList(boardSize);
 
-  generateFleet(players[0]);
-  generateFleet(players[1]);
+  generateFleet(players[0], boardSize);
+  generateFleet(players[1], boardSize);
 
-  playRound(players, 3);
+  // playRound(players, 3);
+
+  players.forEach((player) => {
+    console.log(player.getGameboard().getBoard());
+  });
 }
 
 export default gameController;

@@ -1,14 +1,14 @@
 import Player from "./Player";
 
-function createPlayer(name, isPlayer = false) {
-  return new Player(name, isPlayer);
+function createPlayer(name, size) {
+  return new Player(name, size);
 }
 
-function playerList() {
+function playerList(size) {
   const players = [];
 
-  const player = createPlayer("player", true);
-  const computer = createPlayer("computer");
+  const player = createPlayer("player", size);
+  const computer = createPlayer("computer", size);
 
   players.push(player);
   players.push(computer);

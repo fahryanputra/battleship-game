@@ -10,9 +10,9 @@ class Gameboard {
   // 0 = horizontal
   // 1 = vertical
 
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
+  constructor(size) {
+    this.x = size;
+    this.y = size;
     this.attackMessage = "";
     this.sunkMessage = "";
     this.isAllShipSunk = false;
@@ -38,15 +38,13 @@ class Gameboard {
     this.ships.push(ship);
   }
 
-  placeShip(name, x, y, axis) {
-    const ship = this.ships.find((element) => element.getName() === name);
-
+  placeShip(ship, x, y, axis) {
     if (axis < 1) {
-      for (let i = 0; i < ship.length; i++) {
+      for (let i = 0; i < ship.getLength(); i++) {
         this.board[x][y + i] = ship;
       }
     } else {
-      for (let i = 0; i < ship.length; i++) {
+      for (let i = 0; i < ship.getLength(); i++) {
         this.board[x + i][y] = ship;
       }
     }
