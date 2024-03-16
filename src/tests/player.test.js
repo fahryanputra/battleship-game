@@ -1,8 +1,9 @@
 import { describe, expect, test } from "@jest/globals";
 import Player from "../modules/Player";
 
-const player = new Player("player");
-const computer = new Player("computer");
+const size = 3;
+const player = new Player("player", size);
+const computer = new Player("computer", size);
 
 describe("Player class", () => {
   test("create player", () => {
