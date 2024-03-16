@@ -1,6 +1,5 @@
 import { describe, expect, test } from "@jest/globals";
 import Gameboard from "../modules/Gameboard";
-import Ship from "../modules/Ship";
 
 const gameboard = new Gameboard(3, 3);
 
