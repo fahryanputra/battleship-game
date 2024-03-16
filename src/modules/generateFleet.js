@@ -25,7 +25,7 @@ function placeShipAtRandomPosition(player, ship, size) {
 }
 
 function generateFleet(player, size) {
-  addShip(player, "destroyer", 4);
+  addShip(player, "destroyer", 2);
 
   const fleet = player.getGameboard().getShips();
 

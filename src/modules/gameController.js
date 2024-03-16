@@ -97,13 +97,13 @@ function playRound(players, round) {
 }
 
 function gameController() {
-  const boardSize = 5;
+  const boardSize = 3;
   const players = playerList(boardSize);
 
   generateFleet(players[0], boardSize);
   generateFleet(players[1], boardSize);
 
-  // playRound(players, 3);
+  playRound(players, 3);
 
   players.forEach((player) => {
     console.log(player.getGameboard().getBoard());
