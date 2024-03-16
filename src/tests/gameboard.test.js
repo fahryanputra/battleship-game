@@ -26,7 +26,7 @@ describe("Gameboard class", () => {
 
   test("place ship", () => {
     gameboard.placeShip(fleet[0], 0, 0, 0);
-    for (let index = 0; index < fleet[0].length; index++) {
+    for (let index = 0; index < fleet[0].getLength(); index++) {
       expect(gameboard.getBoard()[0][index]).toMatchSnapshot({
         name: "destroyer",
       });
@@ -35,7 +35,7 @@ describe("Gameboard class", () => {
 
   test("place another ship", () => {
     gameboard.placeShip(fleet[1], 0, 2, 1);
-    for (let index = 0; index < fleet[1].length; index++) {
+    for (let index = 0; index < fleet[1].getLength(); index++) {
       expect(gameboard.getBoard()[index][2]).toMatchSnapshot({
         name: "cruiser",
       });
