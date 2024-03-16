@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gameboard class check ship object 1`] = `
+{
+  "damage": 0,
+  "isSunk": false,
+  "length": 2,
+  "name": "destroyer",
+}
+`;
+
+exports[`Gameboard class place another ship 1`] = `
+{
+  "damage": 0,
+  "isSunk": false,
+  "length": 3,
+  "name": "cruiser",
+}
+`;
+
+exports[`Gameboard class place another ship 2`] = `
+{
+  "damage": 0,
+  "isSunk": false,
+  "length": 3,
+  "name": "cruiser",
+}
+`;
+
+exports[`Gameboard class place another ship 3`] = `
+{
+  "damage": 0,
+  "isSunk": false,
+  "length": 3,
+  "name": "cruiser",
+}
+`;
+
+exports[`Gameboard class place ship 1`] = `
+{
+  "damage": 0,
+  "isSunk": false,
+  "length": 2,
+  "name": "destroyer",
+}
+`;
+
+exports[`Gameboard class place ship 2`] = `
+{
+  "damage": 0,
+  "isSunk": false,
+  "length": 2,
+  "name": "destroyer",
+}
+`;
