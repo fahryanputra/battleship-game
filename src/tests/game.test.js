@@ -9,7 +9,8 @@ const computer = new Player("computer", 3);
 players.push(player);
 players.push(computer);
 
-const game = new Game(players);
+const game = new Game();
+game.setPlayers(players);
 
 describe("Game class", () => {
   test("return player", () => {

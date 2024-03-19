@@ -11,8 +11,7 @@ class Gameboard {
   // 1 = vertical
 
   constructor(size) {
-    this.x = size;
-    this.y = size;
+    this.size = size;
     this.attackMessage = "";
     this.sunkMessage = "";
     this.isAllShipSunk = false;
@@ -24,9 +23,9 @@ class Gameboard {
   }
 
   createBoard() {
-    for (let i = 0; i < this.x; i++) {
+    for (let i = 0; i < this.size; i++) {
       this.board[i] = [];
-      for (let j = 0; j < this.y; j++) {
+      for (let j = 0; j < this.size; j++) {
         this.board[i].push(0);
       }
     }
@@ -88,12 +87,8 @@ class Gameboard {
   }
 
   // Getter
-  getX() {
-    return this.x;
-  }
-
-  getY() {
-    return this.y;
+  getSize() {
+    return this.size;
   }
 
   getBoard() {

@@ -8,8 +8,9 @@ function placeShip(player, ship, x, y, axis = 0) {
   player.getGameboard().placeShip(ship, x, y, axis);
 }
 
-function placeShipAtRandomPosition(player, ship, size) {
+function placeShipAtRandomPosition(player, ship) {
   const axis = generateRandomNumber(2);
+  const size = player.getGameboard().getSize();
   let x = 0;
   let y = 0;
 
@@ -23,13 +24,13 @@ function placeShipAtRandomPosition(player, ship, size) {
   placeShip(player, ship, x, y, axis);
 }
 
-function generateFleet(player, size) {
+function generateFleet(player) {
   addShip(player, "destroyer", 2);
 
   const fleet = player.getGameboard().getShips();
 
   fleet.forEach((ship) => {
-    placeShipAtRandomPosition(player, ship, size);
+    placeShipAtRandomPosition(player, ship);
   });
 }
 

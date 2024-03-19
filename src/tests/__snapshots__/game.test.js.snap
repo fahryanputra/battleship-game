@@ -24,9 +24,8 @@ exports[`Game class return computer 1`] = `
     ],
     "isAllShipSunk": false,
     "ships": [],
+    "size": 3,
     "sunkMessage": "",
-    "x": 3,
-    "y": 3,
   },
   "name": "computer",
 }
@@ -56,41 +55,8 @@ exports[`Game class return player 1`] = `
     ],
     "isAllShipSunk": false,
     "ships": [],
+    "size": 3,
     "sunkMessage": "",
-    "x": 3,
-    "y": 3,
-  },
-  "name": "player",
-}
-`;
-
-exports[`Game class return players 1`] = `
-{
-  "gameboard": Gameboard {
-    "attackMessage": "",
-    "availableShips": [],
-    "board": [
-      [
-        0,
-        0,
-        0,
-      ],
-      [
-        0,
-        0,
-        0,
-      ],
-      [
-        0,
-        0,
-        0,
-      ],
-    ],
-    "isAllShipSunk": false,
-    "ships": [],
-    "sunkMessage": "",
-    "x": 3,
-    "y": 3,
   },
   "name": "player",
 }

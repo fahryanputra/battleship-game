@@ -1,7 +1,7 @@
 import Player from "./Player";
 
-function createPlayer(name, size) {
-  const player = new Player(name, size);
+function createPlayer(name) {
+  const player = new Player(name);
 
   return player;
 }

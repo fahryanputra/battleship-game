@@ -1,14 +1,13 @@
 .cell {
   border: 1px solid black;
-  width: 1rem;
-  height: 1rem;
+  width: 2rem;
+  height: 2rem;
 }
 
 .board {
-  width: 10rem;
-  height: 10rem;
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid black;
 }
 
 .game-board {

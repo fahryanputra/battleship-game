@@ -99,18 +99,15 @@ function playRound(game, players, round) {
 }
 
 function gameController(game) {
-  const boardSize = 10;
-  const players = [];
-
-  const player = createPlayer("player", boardSize);
-  const computer = createPlayer("computer", boardSize);
-  players.push(player);
-  players.push(computer);
+  const player = createPlayer("player");
+  const computer = createPlayer("computer");
+  const players = [player, computer];
 
   game.setPlayers(players);
 
-  generateFleet(players[0], boardSize);
-  generateFleet(players[1], boardSize);
+  players.forEach((player) => {
+    generateFleet(player);
+  });
 
   // playRound(game, players, 3);
 }

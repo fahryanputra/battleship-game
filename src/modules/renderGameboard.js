@@ -1,5 +1,3 @@
-import Game from "./Game";
-
 function createBoard(player) {
   const board = player.getGameboard().getBoard();
 
