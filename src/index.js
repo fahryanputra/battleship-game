@@ -1,5 +1,8 @@
 import gameController from "./modules/gameController";
 import renderGameboard from "./modules/renderGameboard";
+import Game from "./modules/Game";
 
-gameController();
-renderGameboard();
+const game = new Game();
+
+gameController(game);
+renderGameboard(game);

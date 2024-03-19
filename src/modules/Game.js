@@ -1,8 +1,8 @@
 import Player from "./Player";
 
 class Game {
-  constructor(players) {
-    this.players = players;
+  constructor() {
+    this.players = [];
     this.winner = "";
   }
 

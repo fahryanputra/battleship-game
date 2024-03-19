@@ -1,7 +1,6 @@
 import generateRandomNumber from "../utilities/generateRandomNumber";
 import generateFleet from "./generateFleet";
 import createPlayer from "./createPlayer";
-import Game from "./Game";
 
 function attackValidation(player, x, y) {
   if (
@@ -92,14 +91,14 @@ function playRound(game, players, round) {
 
     computerTurn(players[1], players[0]);
     gameOver = players[0].getLose();
-    game.setWinner(players[1]);
+    game.setWinner(players[0]);
     if (gameOver) break;
 
     counter += 1;
   }
 }
 
-function gameController() {
+function gameController(game) {
   const boardSize = 3;
   const players = [];
 
@@ -108,12 +107,12 @@ function gameController() {
   players.push(player);
   players.push(computer);
 
-  const game = new Game(players);
+  game.setPlayers(players);
 
   generateFleet(players[0], boardSize);
   generateFleet(players[1], boardSize);
 
-  // playRound(players, 3);
+  // playRound(game, players, 3);
 }
 
 export default gameController;
