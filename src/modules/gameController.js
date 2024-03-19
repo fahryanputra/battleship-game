@@ -1,6 +1,7 @@
 import generateRandomNumber from "../utilities/generateRandomNumber";
 import generateFleet from "./generateFleet";
-import playerList from "./playerList";
+import createPlayer from "./createPlayer";
+import Game from "./Game";
 
 function attackValidation(player, x, y) {
   if (
@@ -79,17 +80,19 @@ function computerTurn(computer, player) {
   executeAttack(computer, player, x, y);
 }
 
-function playRound(players, round) {
+function playRound(game, players, round) {
   let counter = 0;
   let gameOver = false;
 
   while (counter < round && !gameOver) {
     playerTurn(players[0], players[1]);
     gameOver = players[1].getLose();
+    game.setWinner(players[0]);
     if (gameOver) break;
 
     computerTurn(players[1], players[0]);
     gameOver = players[0].getLose();
+    game.setWinner(players[1]);
     if (gameOver) break;
 
     counter += 1;
@@ -98,16 +101,19 @@ function playRound(players, round) {
 
 function gameController() {
   const boardSize = 3;
-  const players = playerList(boardSize);
+  const players = [];
+
+  const player = createPlayer("player", boardSize);
+  const computer = createPlayer("computer", boardSize);
+  players.push(player);
+  players.push(computer);
+
+  const game = new Game(players);
 
   generateFleet(players[0], boardSize);
   generateFleet(players[1], boardSize);
 
-  playRound(players, 3);
-
-  players.forEach((player) => {
-    console.log(player.getGameboard().getBoard());
-  });
+  // playRound(players, 3);
 }
 
 export default gameController;
