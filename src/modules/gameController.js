@@ -99,7 +99,7 @@ function playRound(game, players, round) {
 }
 
 function gameController(game) {
-  const boardSize = 3;
+  const boardSize = 10;
   const players = [];
 
   const player = createPlayer("player", boardSize);

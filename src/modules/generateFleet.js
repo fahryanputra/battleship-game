@@ -20,7 +20,6 @@ function placeShipAtRandomPosition(player, ship, size) {
     x = generateRandomNumber(size - (ship.getLength() - 1));
     y = generateRandomNumber(size);
   }
-
   placeShip(player, ship, x, y, axis);
 }
 

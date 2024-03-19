@@ -1,7 +1,7 @@
 import { describe, expect, test } from "@jest/globals";
 import Gameboard from "../modules/Gameboard";
 
-const gameboard = new Gameboard(3, 3);
+const gameboard = new Gameboard(10);
 
 gameboard.addShip("destroyer", 2);
 gameboard.addShip("cruiser", 3);
@@ -11,9 +11,16 @@ const fleet = gameboard.getShips();
 describe("Gameboard class", () => {
   test("create board", () => {
     expect(gameboard.getBoard()).toStrictEqual([
-      [0, 0, 0],
-      [0, 0, 0],
-      [0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     ]);
   });
 
