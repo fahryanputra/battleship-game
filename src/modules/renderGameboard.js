@@ -8,6 +8,9 @@ function createBoard(player) {
     for (let j = 0; j < board[i].length; j++) {
       const cell = document.createElement("div");
       cell.classList.add("cell");
+      if (board[i][j] != 0) {
+        cell.classList.add("filled");
+      }
       container.appendChild(cell);
     }
   }

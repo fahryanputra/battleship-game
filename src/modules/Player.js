@@ -3,7 +3,7 @@ import Gameboard from "./Gameboard";
 class Player {
   constructor(name) {
     this.name = name;
-    this.gameboard = new Gameboard(3);
+    this.gameboard = new Gameboard(10);
   }
 
   attack(player, x, y) {

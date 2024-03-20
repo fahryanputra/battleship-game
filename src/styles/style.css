@@ -4,9 +4,13 @@
   height: 2rem;
 }
 
+.cell.filled {
+  background-color: red;
+}
+
 .board {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(10, 1fr);
   border: 1px solid black;
 }
 

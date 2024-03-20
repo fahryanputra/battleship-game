@@ -107,7 +107,6 @@ function gameController(game) {
 
   players.forEach((player) => {
     generateFleet(player);
-    console.log(player.getGameboard().getBoard());
   });
 
   // playRound(game, players, 3);

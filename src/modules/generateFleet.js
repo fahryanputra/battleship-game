@@ -1,5 +1,4 @@
 import generateRandomNumber from "../utilities/generateRandomNumber";
-import Player from "./Player";
 
 function addShip(player, ship, length = 1) {
   player.getGameboard().addShip(ship, length);
@@ -26,8 +25,8 @@ function placeShipAtRandomPosition(player, ship) {
     x = generateRandomNumber(size);
     y = generateRandomNumber(size - (ship.getLength() - 1));
 
-    for (let i = y; i < ship.length; i++) {
-      if (isEmptyTile(player, x, i) === false) {
+    for (let i = 0; i < ship.getLength(); i++) {
+      if (isEmptyTile(player, x, y + i) === false) {
         isInvalidPlacement = true;
         break;
       }
@@ -36,13 +35,14 @@ function placeShipAtRandomPosition(player, ship) {
     x = generateRandomNumber(size - (ship.getLength() - 1));
     y = generateRandomNumber(size);
 
-    for (let i = x; i < ship.length; i++) {
-      if (isEmptyTile(player, i, y) === false) {
+    for (let i = 0; i < ship.getLength(); i++) {
+      if (isEmptyTile(player, x + i, y) === false) {
         isInvalidPlacement = true;
         break;
       }
     }
   }
+
   if (isInvalidPlacement) {
     placeShipAtRandomPosition(player, ship);
   } else {
@@ -51,8 +51,15 @@ function placeShipAtRandomPosition(player, ship) {
 }
 
 function generateFleet(player) {
+  addShip(player, "submarine", 1);
+  addShip(player, "submarine", 1);
+  addShip(player, "submarine", 1);
   addShip(player, "destroyer", 2);
-  addShip(player, "carrier", 3);
+  addShip(player, "destroyer", 2);
+  addShip(player, "destroyer", 3);
+  addShip(player, "cruiser", 3);
+  addShip(player, "cruiser", 3);
+  addShip(player, "battleship", 4);
 
   const fleet = player.getGameboard().getShips();
 
