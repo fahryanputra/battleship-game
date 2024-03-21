@@ -51,15 +51,15 @@ function placeShipAtRandomPosition(player, ship) {
 }
 
 function generateFleet(player) {
-  addShip(player, "submarine", 1);
-  addShip(player, "submarine", 1);
-  addShip(player, "submarine", 1);
-  addShip(player, "destroyer", 2);
-  addShip(player, "destroyer", 2);
-  addShip(player, "destroyer", 3);
-  addShip(player, "cruiser", 3);
-  addShip(player, "cruiser", 3);
-  addShip(player, "battleship", 4);
+  addShip(player, "submarine1", 1);
+  addShip(player, "submarine2", 1);
+  addShip(player, "submarine3", 1);
+  addShip(player, "destroyer1", 2);
+  addShip(player, "destroyer2", 2);
+  addShip(player, "destroyer3", 3);
+  addShip(player, "cruiser1", 3);
+  addShip(player, "cruiser2", 3);
+  addShip(player, "battleship1", 4);
 
   const fleet = player.getGameboard().getShips();
 

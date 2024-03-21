@@ -5,7 +5,15 @@
 }
 
 .cell.filled {
-  background-color: red;
+  background-color: lightgreen;
+}
+
+.cell.filled.hit {
+  background-color: lightcoral;
+}
+
+.cell.miss {
+  background-color: lightblue;
 }
 
 .board {

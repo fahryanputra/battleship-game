@@ -1,16 +1,46 @@
-function createBoard(player) {
+function playerAttack(container, player, x, y) {
+  const gameboard = player.getGameboard();
+
+  gameboard.receiveAttack(x, y);
+  if (gameboard.getAttackResult() === 0) {
+    container.classList.add("miss");
+  } else {
+    container.classList.add("hit");
+  }
+
+  console.log(gameboard.getAttackMessage());
+
+  if (gameboard.getSunkMessage()) console.log(gameboard.getSunkMessage());
+  if (gameboard.getIsAllShipSunk())
+    console.log(`All ${player.getName()}'s ship has been sunk.`);
+}
+
+function createCell(player, x, y) {
   const board = player.getGameboard().getBoard();
+  const container = document.createElement("div");
+
+  container.classList.add("cell");
+  if (board[x][y] != 0) {
+    container.classList.add("filled");
+  }
+
+  container.addEventListener("click", () => {
+    playerAttack(container, player, x, y);
+  });
+
+  return container;
+}
+
+function createBoard(player) {
+  const gameboard = player.getGameboard();
+  const board = gameboard.getBoard();
 
   const container = document.createElement("div");
   container.classList.add("board");
 
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
-      const cell = document.createElement("div");
-      cell.classList.add("cell");
-      if (board[i][j] != 0) {
-        cell.classList.add("filled");
-      }
+      const cell = createCell(player, i, j);
       container.appendChild(cell);
     }
   }

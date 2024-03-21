@@ -10,8 +10,13 @@ class Gameboard {
   // 0 = horizontal
   // 1 = vertical
 
+  // Attack result
+  // 0 = miss
+  // 1 = hit
+
   constructor(size) {
     this.size = size;
+    this.attackResult = 0;
     this.attackMessage = "";
     this.sunkMessage = "";
     this.isAllShipSunk = false;
@@ -69,11 +74,13 @@ class Gameboard {
     switch (this.board[x][y]) {
       case 0:
         this.board[x][y] = 1;
+        this.attackResult = 0;
         this.attackMessage = "miss";
         break;
 
       case 1:
       case 2:
+        this.attackResult = 2;
         this.attackMessage = "invalid";
         break;
 
@@ -81,6 +88,7 @@ class Gameboard {
         this.board[x][y].hit();
         this.destroyIfSunk(this.board[x][y]);
         this.board[x][y] = 2;
+        this.attackResult = 1;
         this.attackMessage = "hit";
         break;
     }
@@ -101,6 +109,10 @@ class Gameboard {
 
   getAvailableShips() {
     return this.availableShips;
+  }
+
+  getAttackResult() {
+    return this.attackResult;
   }
 
   getAttackMessage() {
