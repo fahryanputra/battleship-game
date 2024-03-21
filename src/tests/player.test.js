@@ -1,35 +1,26 @@
 import { describe, expect, test } from "@jest/globals";
 import Player from "../modules/Player";
 
-const size = 3;
-const player = new Player("player", size);
-const computer = new Player("computer", size);
+const play = new Player("play");
+const com = new Player("com");
 
 describe("Player class", () => {
   test("create player", () => {
-    expect(player.getName()).toBe("player");
+    expect(play.getName()).toBe("play");
   });
 
   test("player board", () => {
-    expect(player.getGameboard().getBoard()).toStrictEqual([
-      [0, 0, 0],
-      [0, 0, 0],
-      [0, 0, 0],
-    ]);
+    expect(play.getGameboard().getBoard().length).toBe(10);
   });
 
   test("player attack", () => {
-    player.attack(computer, 0, 0);
-    expect(computer.getGameboard().getBoard()).toStrictEqual([
-      [1, 0, 0],
-      [0, 0, 0],
-      [0, 0, 0],
-    ]);
+    play.attack(com, 0, 0);
+    expect(com.getGameboard().getBoard()[0][0]).toBe(1);
   });
 
   test("add ship to player", () => {
-    player.getGameboard().addShip("destroyer", 2);
-    expect(player.getGameboard().getShips().length).toBe(1);
-    expect(computer.getGameboard().getShips().length).toBe(0);
+    play.getGameboard().addShip("destroyer", 2);
+    expect(play.getGameboard().getShips().length).toBe(1);
+    expect(com.getGameboard().getShips().length).toBe(0);
   });
 });

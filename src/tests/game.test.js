@@ -14,14 +14,10 @@ game.setPlayers(players);
 
 describe("Game class", () => {
   test("return player", () => {
-    expect(game.getPlayers()[0]).toMatchSnapshot({
-      name: "player",
-    });
+    expect(game.getPlayers()[0].getName()).toBe("player");
   });
 
   test("return computer", () => {
-    expect(game.getPlayers()[1]).toMatchSnapshot({
-      name: "computer",
-    });
+    expect(game.getPlayers()[1].getName()).toBe("computer");
   });
 });
