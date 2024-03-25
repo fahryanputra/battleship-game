@@ -4,6 +4,7 @@ class Game {
   constructor() {
     this.players = [];
     this.winner = "";
+    this.turn = "";
   }
 
   // Getter
@@ -15,6 +16,10 @@ class Game {
     return this.winner;
   }
 
+  getTurn() {
+    return this.turn;
+  }
+
   // Setter
   setPlayers(players) {
     this.players = players;
@@ -22,6 +27,10 @@ class Game {
 
   setWinner(winner) {
     this.winner = winner;
+  }
+
+  setTurn(turn) {
+    this.turn = turn;
   }
 }
 

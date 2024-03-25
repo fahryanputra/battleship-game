@@ -1,23 +1,12 @@
-function playerAttack(container, player, x, y) {
-  const gameboard = player.getGameboard();
-
-  gameboard.receiveAttack(x, y);
-  if (gameboard.getAttackResult() === 0) {
-    container.classList.add("miss");
-  } else {
-    container.classList.add("hit");
-  }
-
-  if (gameboard.getSunkMessage()) alert(gameboard.getSunkMessage());
-  if (gameboard.getIsAllShipSunk())
-    alert(`All ${player.getName()}'s ship has been sunk.`);
-}
+import { turnController } from "./gameController";
 
 function createCell(player, x, y) {
-  const board = player.getGameboard().getBoard();
+  const gameboard = player.getGameboard();
+  const board = gameboard.getBoard();
   const container = document.createElement("div");
 
   container.classList.add("cell");
+  container.classList.add(`grid-${x}-${y}`);
 
   if (board[x][y] != 0) {
     container.classList.add("filled");
@@ -25,7 +14,13 @@ function createCell(player, x, y) {
 
   if (player.getIsBot() === true) {
     container.addEventListener("click", () => {
-      playerAttack(container, player, x, y);
+      if (
+        !container.classList.contains("miss") &&
+        !container.classList.contains("hit")
+      ) {
+        turnController(x, y);
+      }
+      container.classList.add(gameboard.getAttackMessage());
     });
   }
 
@@ -39,7 +34,6 @@ function createBoard(player) {
   const container = document.createElement("div");
   container.classList.add("board");
   container.classList.add(player.getName());
-
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
       const cell = createCell(player, i, j);

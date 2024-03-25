@@ -1,9 +1,9 @@
 import "./styles/style.css";
-import gameController from "./modules/gameController";
+import { initializeGame, gameController } from "./modules/gameController";
 import renderGameboard from "./modules/renderGameboard";
 import Game from "./modules/Game";
 
 const game = new Game();
 
-gameController(game);
+initializeGame(game);
 renderGameboard(game);
