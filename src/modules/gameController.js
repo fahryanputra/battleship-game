@@ -100,7 +100,7 @@ function playRound(game, players, round) {
 
 function gameController(game) {
   const player = createPlayer("player");
-  const computer = createPlayer("computer");
+  const computer = createPlayer("computer", true);
   const players = [player, computer];
 
   game.setPlayers(players);

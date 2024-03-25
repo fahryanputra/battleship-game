@@ -1,8 +1,9 @@
 import Gameboard from "./Gameboard";
 
 class Player {
-  constructor(name) {
+  constructor(name, isBot = false) {
     this.name = name;
+    this.isBot = isBot;
     this.gameboard = new Gameboard(10);
   }
 
@@ -17,6 +18,10 @@ class Player {
 
   getGameboard() {
     return this.gameboard;
+  }
+
+  getIsBot() {
+    return this.isBot;
   }
 
   getLose() {

@@ -8,11 +8,9 @@ function playerAttack(container, player, x, y) {
     container.classList.add("hit");
   }
 
-  console.log(gameboard.getAttackMessage());
-
-  if (gameboard.getSunkMessage()) console.log(gameboard.getSunkMessage());
+  if (gameboard.getSunkMessage()) alert(gameboard.getSunkMessage());
   if (gameboard.getIsAllShipSunk())
-    console.log(`All ${player.getName()}'s ship has been sunk.`);
+    alert(`All ${player.getName()}'s ship has been sunk.`);
 }
 
 function createCell(player, x, y) {
@@ -20,13 +18,16 @@ function createCell(player, x, y) {
   const container = document.createElement("div");
 
   container.classList.add("cell");
+
   if (board[x][y] != 0) {
     container.classList.add("filled");
   }
 
-  container.addEventListener("click", () => {
-    playerAttack(container, player, x, y);
-  });
+  if (player.getIsBot() === true) {
+    container.addEventListener("click", () => {
+      playerAttack(container, player, x, y);
+    });
+  }
 
   return container;
 }
@@ -37,6 +38,7 @@ function createBoard(player) {
 
   const container = document.createElement("div");
   container.classList.add("board");
+  container.classList.add(player.getName());
 
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {

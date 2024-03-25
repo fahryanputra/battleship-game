@@ -4,6 +4,10 @@
   height: 2rem;
 }
 
+.board.computer > .cell:hover {
+  background-color: lightgrey;
+}
+
 .cell.filled {
   background-color: lightgreen;
 }
