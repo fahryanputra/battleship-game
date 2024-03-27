@@ -12,6 +12,10 @@
   background-color: lightgreen;
 }
 
+/* .computer > .cell.filled {
+  background-color: white;
+} */
+
 .cell.filled.hit {
   background-color: lightcoral;
 }

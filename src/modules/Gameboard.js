@@ -94,6 +94,11 @@ class Gameboard {
     }
   }
 
+  removeShip() {
+    this.ships.splice(0, this.ships.length);
+    console.log(this.ships);
+  }
+
   // Getter
   getSize() {
     return this.size;

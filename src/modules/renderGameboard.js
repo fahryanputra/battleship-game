@@ -1,4 +1,10 @@
+import generateFleet from "./generateFleet";
 import turnController from "./turnController";
+
+function createNotification(message) {
+  const notification = document.querySelector(".notification");
+  notification.textContent = message;
+}
 
 function createCell(game, player, x, y) {
   const gameboard = player.getGameboard();
@@ -14,6 +20,9 @@ function createCell(game, player, x, y) {
 
   if (player.getIsBot() === true) {
     container.addEventListener("click", () => {
+      const notification = document.querySelector(".notification");
+      notification.textContent = "";
+
       if (
         !container.classList.contains("miss") &&
         !container.classList.contains("hit")
@@ -21,6 +30,16 @@ function createCell(game, player, x, y) {
         turnController(game, x, y);
       }
       container.classList.add(gameboard.getAttackMessage());
+
+      if (gameboard.getSunkMessage()) {
+        createNotification(gameboard.getSunkMessage());
+      }
+      if (gameboard.getIsAllShipSunk()) {
+        createNotification(`All of ${player.getName()}'s ship has been sunk.`);
+
+        const parentNode = container.parentNode;
+        parentNode.style["pointer-events"] = "none";
+      }
     });
   }
 
@@ -44,18 +63,37 @@ function createBoard(game, player) {
   return container;
 }
 
+function renderPlayerName(name, tag) {
+  const text = document.createElement(tag);
+  text.textContent = name;
+
+  return text;
+}
+
 function renderGameboard(game) {
   const players = game.getPlayers();
-  const boardContainer = document.createElement("div");
+  let boardContainer = document.createElement("div");
 
   boardContainer.classList.add("game-board");
 
   players.forEach((player) => {
+    boardContainer.appendChild(renderPlayerName(player.getName(), "h1"));
     boardContainer.appendChild(createBoard(game, player));
   });
 
-  const container = document.createElement("div");
+  let container = document.createElement("div");
   container.appendChild(boardContainer);
+
+  const notificationText = document.createElement("p");
+  notificationText.classList.add("notification");
+  container.appendChild(notificationText);
+
+  const randomButton = document.createElement("button");
+  randomButton.textContent = "Randomize";
+  randomButton.addEventListener("click", () => {
+    window.location.reload();
+  });
+  container.appendChild(randomButton);
 
   const content = document.querySelector(".content");
 

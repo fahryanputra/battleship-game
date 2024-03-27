@@ -6,12 +6,6 @@ function attackTile(player, x, y) {
   const gameboard = player.getGameboard();
 
   gameboard.receiveAttack(x, y);
-  //   console.log(`${player.getName()} attack`);
-
-  if (gameboard.getSunkMessage())
-    alert(`${player.getName()}'s ${gameboard.getSunkMessage()}`);
-  if (gameboard.getIsAllShipSunk())
-    alert(`All ${player.getName()}'s ship has been sunk.`);
 }
 
 function turnController(game, x, y) {
