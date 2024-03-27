@@ -1,6 +1,6 @@
-import { turnController } from "./gameController";
+import turnController from "./turnController";
 
-function createCell(player, x, y) {
+function createCell(game, player, x, y) {
   const gameboard = player.getGameboard();
   const board = gameboard.getBoard();
   const container = document.createElement("div");
@@ -18,7 +18,7 @@ function createCell(player, x, y) {
         !container.classList.contains("miss") &&
         !container.classList.contains("hit")
       ) {
-        turnController(x, y);
+        turnController(game, x, y);
       }
       container.classList.add(gameboard.getAttackMessage());
     });
@@ -27,7 +27,7 @@ function createCell(player, x, y) {
   return container;
 }
 
-function createBoard(player) {
+function createBoard(game, player) {
   const gameboard = player.getGameboard();
   const board = gameboard.getBoard();
 
@@ -36,7 +36,7 @@ function createBoard(player) {
   container.classList.add(player.getName());
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
-      const cell = createCell(player, i, j);
+      const cell = createCell(game, player, i, j);
       container.appendChild(cell);
     }
   }
@@ -45,11 +45,13 @@ function createBoard(player) {
 }
 
 function renderGameboard(game) {
+  const players = game.getPlayers();
   const boardContainer = document.createElement("div");
+
   boardContainer.classList.add("game-board");
 
-  game.getPlayers().forEach((player) => {
-    boardContainer.appendChild(createBoard(player));
+  players.forEach((player) => {
+    boardContainer.appendChild(createBoard(game, player));
   });
 
   const container = document.createElement("div");
