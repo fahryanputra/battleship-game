@@ -22,7 +22,6 @@ function turnController(game, x, y) {
   } while (picked.includes(`${i}, ${j}`));
 
   picked.push(`${i}, ${j}`);
-  console.log(picked);
 
   attackTile(player, i, j);
 

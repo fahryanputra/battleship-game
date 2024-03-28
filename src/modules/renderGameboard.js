@@ -1,8 +1,8 @@
 import generateFleet from "./generateFleet";
 import turnController from "./turnController";
 
-function createNotification(message) {
-  const notification = document.querySelector(".notification");
+function announceMessage(className, message) {
+  const notification = document.querySelector(`.${className}`);
   notification.textContent = message;
 }
 
@@ -31,15 +31,41 @@ function createCell(game, player, x, y) {
       }
       container.classList.add(gameboard.getAttackMessage());
 
-      if (gameboard.getSunkMessage()) {
-        createNotification(gameboard.getSunkMessage());
-      }
-      if (gameboard.getIsAllShipSunk()) {
-        createNotification(`All of ${player.getName()}'s ship has been sunk.`);
+      game.getPlayers().forEach((element) => {
+        if (element.getGameboard().getSunkMessage()) {
+          announceMessage(
+            "notification",
+            `${element.getName()}'s ${element.getGameboard().getSunkMessage()}`,
+          );
+        }
 
-        const parentNode = container.parentNode;
-        parentNode.style["pointer-events"] = "none";
-      }
+        if (element.getGameboard().getIsAllShipSunk()) {
+          announceMessage(
+            "notification",
+            `All of ${player.getName()}'s ship has been sunk.`,
+          );
+
+          const parentNode = container.parentNode;
+          parentNode.style["pointer-events"] = "none";
+
+          const winner = game
+            .getPlayers()
+            .filter((name) => name.getName() !== element.getName());
+          announceMessage("announcement", `${winner[0].getName()} wins!`);
+        }
+      });
+      // if (gameboard.getSunkMessage()) {
+      //   announceMessage("notification", gameboard.getSunkMessage());
+      // }
+      // if (gameboard.getIsAllShipSunk()) {
+      //   announceMessage(
+      //     "notification",
+      //     `All of ${player.getName()}'s ship has been sunk.`,
+      //   );
+
+      //   const parentNode = container.parentNode;
+      //   parentNode.style["pointer-events"] = "none";
+      // }
     });
   }
 
@@ -77,23 +103,31 @@ function renderGameboard(game) {
   boardContainer.classList.add("game-board");
 
   players.forEach((player) => {
-    boardContainer.appendChild(renderPlayerName(player.getName(), "h1"));
-    boardContainer.appendChild(createBoard(game, player));
+    const container = document.createElement("div");
+
+    container.appendChild(renderPlayerName(player.getName(), "h1"));
+    container.appendChild(createBoard(game, player));
+
+    boardContainer.appendChild(container);
   });
 
   let container = document.createElement("div");
   container.appendChild(boardContainer);
 
+  const resetButton = document.createElement("button");
+  resetButton.textContent = "Reset";
+  resetButton.addEventListener("click", () => {
+    window.location.reload();
+  });
+  container.appendChild(resetButton);
+
   const notificationText = document.createElement("p");
   notificationText.classList.add("notification");
   container.appendChild(notificationText);
 
-  const randomButton = document.createElement("button");
-  randomButton.textContent = "Randomize";
-  randomButton.addEventListener("click", () => {
-    window.location.reload();
-  });
-  container.appendChild(randomButton);
+  const announcementText = document.createElement("p");
+  announcementText.classList.add("announcement");
+  container.appendChild(announcementText);
 
   const content = document.querySelector(".content");
 

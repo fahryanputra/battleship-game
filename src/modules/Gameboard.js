@@ -64,7 +64,7 @@ class Gameboard {
         this.isAllShipSunk = true;
       }
 
-      this.sunkMessage = `${tile.getName()} sunk`;
+      this.sunkMessage = `${tile.getName()} has been sunk`;
     }
   }
 

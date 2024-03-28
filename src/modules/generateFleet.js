@@ -59,15 +59,15 @@ function randomShipPosition(player) {
 }
 
 function generateFleet(player) {
-  addShip(player, "submarine1", 1);
-  addShip(player, "submarine2", 1);
-  addShip(player, "submarine3", 1);
-  addShip(player, "destroyer1", 2);
-  addShip(player, "destroyer2", 2);
-  addShip(player, "destroyer3", 3);
-  addShip(player, "cruiser1", 3);
-  addShip(player, "cruiser2", 3);
-  addShip(player, "battleship1", 4);
+  addShip(player, "Submarine #01", 1);
+  addShip(player, "Submarine #02", 1);
+  addShip(player, "Submarine #03", 1);
+  addShip(player, "Destroyer #01", 2);
+  addShip(player, "Destroyer #02", 2);
+  addShip(player, "Destroyer #03", 3);
+  addShip(player, "Cruiser #01", 3);
+  addShip(player, "Cruiser #02", 3);
+  addShip(player, "Battleship #01", 4);
 
   randomShipPosition(player);
 }
