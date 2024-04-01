@@ -1,3 +1,8 @@
+import {
+  capitalizeEachWord,
+  createIcon,
+  createText,
+} from "../utilities/utility";
 import generateFleet from "./generateFleet";
 import turnController from "./turnController";
 
@@ -35,14 +40,14 @@ function createCell(game, player, x, y) {
         if (element.getGameboard().getSunkMessage()) {
           announceMessage(
             "notification",
-            `${element.getName()}'s ${element.getGameboard().getSunkMessage()}`,
+            `${capitalizeEachWord(element.getName())}'s ${element.getGameboard().getSunkMessage()}`,
           );
         }
 
         if (element.getGameboard().getIsAllShipSunk()) {
           announceMessage(
             "notification",
-            `All of ${player.getName()}'s ship has been sunk.`,
+            `All of ${capitalizeEachWord(player.getName())}'s ship has been sunk.`,
           );
 
           const parentNode = container.parentNode;
@@ -51,21 +56,12 @@ function createCell(game, player, x, y) {
           const winner = game
             .getPlayers()
             .filter((name) => name.getName() !== element.getName());
-          announceMessage("announcement", `${winner[0].getName()} wins!`);
+          announceMessage(
+            "announcement",
+            `${capitalizeEachWord(winner[0].getName())} wins!`,
+          );
         }
       });
-      // if (gameboard.getSunkMessage()) {
-      //   announceMessage("notification", gameboard.getSunkMessage());
-      // }
-      // if (gameboard.getIsAllShipSunk()) {
-      //   announceMessage(
-      //     "notification",
-      //     `All of ${player.getName()}'s ship has been sunk.`,
-      //   );
-
-      //   const parentNode = container.parentNode;
-      //   parentNode.style["pointer-events"] = "none";
-      // }
     });
   }
 
@@ -105,7 +101,9 @@ function renderGameboard(game) {
   players.forEach((player) => {
     const container = document.createElement("div");
 
-    container.appendChild(renderPlayerName(player.getName(), "h1"));
+    container.appendChild(
+      renderPlayerName(capitalizeEachWord(player.getName()), "h1"),
+    );
     container.appendChild(createBoard(game, player));
 
     boardContainer.appendChild(container);
@@ -115,10 +113,14 @@ function renderGameboard(game) {
   container.appendChild(boardContainer);
 
   const resetButton = document.createElement("button");
-  resetButton.textContent = "Reset";
   resetButton.addEventListener("click", () => {
     window.location.reload();
   });
+  const icon = createIcon("restart_alt");
+  const text = createText("Reset");
+  resetButton.appendChild(icon);
+  resetButton.appendChild(text);
+
   container.appendChild(resetButton);
 
   const notificationText = document.createElement("p");
