@@ -64,7 +64,7 @@ describe("Gameboard class", () => {
     expect(gameboard.getBoard()[0][1]).toBe(2);
     expect(fleet[0].getDamage()).toBe(2);
     expect(fleet[0].getIsSunk()).toBe(true);
-    expect(gameboard.getSunkMessage()).toBe("destroyer sunk");
+    expect(gameboard.getSunkMessage()).toBe("destroyer has been sunk");
     expect(gameboard.getAvailableShips().length).toBe(1);
   });
 
